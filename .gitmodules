@@ -1,0 +1,15 @@
+[submodule "emacs/.doom.d"]
+	path = emacs/.doom.d
+	url = https://github.com/DylanRitchings/.doom.d.git
+[submodule "emacs/emacs/.spacemacs.d"]
+	path = emacs/emacs/.spacemacs.d
+	url = https://github.com/DylanRitchings/.spacemacs.d.git
+[submodule "emacs/.spacemacs.d"]
+	path = emacs/.spacemacs.d
+	url = https://github.com/DylanRitchings/.spacemacs.d.git
+[submodule "bash/shared-dotfiles"]
+	path = bash/shared-dotfiles
+	url = https://github.com/DylanRitchings/shared-dotfiles.git
+[submodule "bash/bash_scripts"]
+	path = bash/bash_scripts
+	url = https://github.com/DylanRitchings/bash_scripts.git
