@@ -13,3 +13,12 @@
 [submodule "bash/bash_scripts"]
 	path = bash/bash_scripts
 	url = https://github.com/DylanRitchings/bash_scripts.git
+[submodule "neovim"]
+	path = neovim
+	url = https://github.com/DylanRitchings/neovim.git
+[submodule "scripts"]
+	path = scripts
+	url = git@github.com:DylanRitchings/scripts.git
+[submodule "bash/scripts"]
+	path = bash/scripts
+	url = git@github.com:DylanRitchings/scripts.git
