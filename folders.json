@@ -1,7 +1,8 @@
 {
-"bash/scripts": "~/dev/scripts/",
-"emacs": "~/.config/",
-"linux": "~/.config/",
-"neovim": "~/.config/nvim/",
-"zsh": "~/"
+//redo bash/scripts
+//"bash/scripts": "$HOME/dev/scripts/",
+"emacs": "$HOME/.config/",
+"linux": "$HOME/.config/",
+"neovim": "$HOME/.config/nvim/",
+"zsh": "$HOME/"
 }

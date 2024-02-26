@@ -18,6 +18,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+alias :q="exit"
+
 alias cd="z"
 
 eval "$(zoxide init zsh)"
