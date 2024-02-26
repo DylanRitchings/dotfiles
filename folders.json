@@ -1,0 +1,7 @@
+{
+"bash/scripts": "~/dev/scripts/",
+"emacs": "~/.config/",
+"linux": "~/.config/",
+"neovim": "~/.config/nvim/",
+"zsh": "~/"
+}
