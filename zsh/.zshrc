@@ -41,4 +41,4 @@ zstyle ':fzf-tab:*' continuous-trigger '/'
 enable-fzf-tab
 
 alias luamake="/home/dylan/software/lua-language-server/3rd/luamake/luamake"
-alias lua-language-server="/home/dylan/software/lua-language-server/bin/lua-language-server"
+export PATH="/home/dylan/software/lua-language-server/bin/lua-language-server":$PATH
