@@ -1,7 +1,4 @@
 {
-//redo bash/scripts
-//"bash/scripts": "$HOME/dev/scripts/",
-"emacs": "$HOME/.config/",
 "linux": "$HOME/.config/",
 "neovim": "$HOME/.config/nvim/",
 "zsh": "$HOME/"
