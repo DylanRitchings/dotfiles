@@ -22,3 +22,7 @@
 [submodule "bash/scripts"]
 	path = bash/scripts
 	url = git@github.com:DylanRitchings/scripts.git
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/DylanRitchings/nvim
+	branch = main
