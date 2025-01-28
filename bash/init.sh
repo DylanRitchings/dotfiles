@@ -8,7 +8,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 if [[ "$MSYSTEM" == "MINGW64" ]] ; then
-  [ -f "$HOME/dev/personal_repos/private-bash/init.sh" ] && source $HOME/dev/personal_repos/private-bash/init.sh
+  [ -f "./private-bash/init.sh" ] && source ./private-bash/init.sh
 fi
 
 [ -f "./finalize.sh" ] && source ./finalize.sh
