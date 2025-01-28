@@ -54,9 +54,11 @@ return {
           "dockerls",
           "hydra_lsp",
           -- "mypy",
-          -- "terraformls",
+          "terraformls",
           "sqlls",
           "bashls",
+          "nil_ls",
+          "rnix"
           -- "harper_ls"
         },
       })

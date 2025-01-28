@@ -1,0 +1,19 @@
+[terminal.shell]
+program = "/bin/zsh"
+
+[keyboard]
+bindings = [
+  { key = "Escape", mods="Super",  action = "ToggleViMode" }, #mode="~Vi",
+  { key = "c", mods="Alt", action = "Copy" },
+  { key = "v", mods="Alt", action = "Paste" }
+]
+
+[window]
+opacity = 0.8
+decorations = "none"
+
+[font]
+normal={family = "FiraCode Nerd Font"}
+size = 14.5
+
+[terminal]
