@@ -1,0 +1,310 @@
+#!/bin/bash
+
+HEIGHT=29
+FONT_SIZE=12
+############## BAR ##############
+sketchybar -m --bar height=$HEIGHT \
+                    position=top \
+                    padding_right=5 \
+                    color=0xE0000000 
+                    # border_color=0xff2E3440 \
+                    # color=0xff2E3440 \
+
+############## GLOBAL DEFAULTS ##############
+sketchybar -m --default updates=when_shown \
+                        drawing=on \
+                        cache_scripts=on \
+                        icon.font="FiraCode Nerd Font:Regular:${FONT_SIZE}" \
+                        icon.color=0xFFECEFF4 \
+                        icon.highlight_color=0xFFA3BE8C \
+                        label.font="FiraCode Nerd Font:Regular:${FONT_SIZE}" \
+                        label.color=0xFFECEFF4 \
+
+############## SPACE DEFAULTS ##############
+# sketchybar -m --default \
+#                         icon.padding_left=5 \
+#                         icon.padding_right=5 \
+
+sketchybar -m --add item logo left \
+              --set logo icon= \
+                    background.height=$HEIGHT \
+                    icon.padding_right=5 \
+                    click_script="~/.config/sketchybar/plugins/app_menu.sh" \
+
+############## PRIMARY DISPLAY SPACES ##############
+
+SPACE_SIDS=(1 2 3 4 5 6 7 8 9)
+
+for sid in "${SPACE_SIDS[@]}"
+do
+  sketchybar --add space space.$sid left                                 \
+             --set space.$sid  \
+                              icon=$sid                                  \
+                              associated_space=$sid \
+                              associated_display=1 \
+                              label.font="sketchybar-app-font:Regular:${FONT_SIZE}" \
+                              icon.highlight_color=0xFFA3BE8C \
+                              script="~/.config/sketchybar/plugins/space_windows.sh"  \
+                              background.color=0xFF000000 \
+                              background.height=$((HEIGHT - 7)) \
+                              background.corner_radius=8 \
+                              padding_left=4 \
+                              padding_right=4 \
+                              icon.padding_right=5 \
+                              icon.padding_left=5 \
+                              click_script="~/.config/sketchybar/plugins/change_space.sh ${sid}"  \
+                              --subscribe space.$sid space_windows_change front_app_switched space_change
+                              # --subscribe space.$sid mouse.entered mouse.exited space_windows_change
+done
+
+############## RIGHT ITEMS ##############
+
+# sketchybar -m --add item power_logo right \
+#               --set power_logo icon=⏻ \
+#                     icon.padding_left=2 \
+#                     background.height=$HEIGHT \
+#                     background.padding_left=5
+
+sketchybar -m --add item clock right \
+              --set clock update_freq=1 \
+                          label.padding_right=10 \
+                          script="~/.config/sketchybar/plugins/clock.sh" \
+                          padding_left=4 \
+                          padding_right=4 \
+                          icon.padding_right=5 \
+                          icon.font="FiraCode Nerd Font:Bold:${FONT_SIZE}" \
+                          background.corner_radius=8 \
+                          background.height=$((HEIGHT - 7)) \
+                          background.color=0xFF333333 
+
+sketchybar -m --add alias "Stats,Battery" right \
+              color=0xFFFFFFFF \
+              click_script="osascript -e 'tell application \"System Events\" to keystroke \"b\" using {option down, shift down, control down, command down}'" 
+
+# sketchybar -m --add item battery right \
+#               --set battery update_freq=3 \
+#               icon.font="FiraCode Nerd Font:Retina:$((FONT_SIZE + 2))" \
+#                             label.font="FiraCode Nerd Font:Regular:${FONT_SIZE}" \
+#                             script="~/.config/sketchybar/plugins/power.sh" \
+#                             icon= \
+#                             background.height=$HEIGHT \
+#                             padding_left=5
+
+
+
+sketchybar -m --add alias "Control Centre,BentoBox" right \
+              --set padding_left=0 \
+              padding_right=0 \
+              color=0xFFFFFFFF \
+              click_script="osascript -e 'tell application \"System Events\" to key code 144'"
+                   
+
+# sketchybar -m --add item control_center right \
+#               --set control_center update_freq=1 \
+#                           label.font="sketchybar-app-font:Regular:${FONT_SIZE}" \
+#                           click_script="osascript -e 'tell application \"System Events\" to keystroke \"c\"'" \
+#                           icon=":gear:" \
+#                           background.height=$HEIGHT \
+#
+# sketchybar -m --add item clock_logo right\
+#               --set clock_logo icon= \
+#                                background.color=0xff5E81AC \
+#                                background.height=$HEIGHT \
+#                                background.padding_left=5
+
+#
+# sketchybar -m --add item brightness right \
+#               --set brightness script="~/.config/sketchybar/plugins/brightness.sh" \
+#                                background.color=0xff3B4252 \
+#                                background.height=$HEIGHT \
+#                                update_freq=1
+#
+# sketchybar -m --add item brightness_logo right \
+#               --set brightness_logo icon= \
+#                                     background.color=0xffEBCB8B \
+#                                     background.height=$HEIGHT \
+#                                     background.padding_left=5
+#
+# sketchybar -m --add item volume right \
+#               --set volume script="~/.config/sketchybar/plugins/volume.sh" \
+#                            background.color=0xff3B4252 \
+#                            background.height=$HEIGHT \
+#                            update_freq=1
+#
+# sketchybar -m --add item volume_logo right \
+#               --set volume_logo icon= \
+#                         background.color=0xff81A1C1 \
+#                         background.height=$HEIGHT \
+#                         background.padding_left=5
+#
+# sketchybar -m --add item net right \
+#               --set net script="~/.config/sketchybar/plugins/net.sh" \
+#                                 background.color=0xff3B4252 \
+#                                 background.height=$HEIGHT
+#
+# sketchybar -m --add item net_logo right \
+#               --set net_logo icon= \
+#                         background.color=0xffB48EAD \
+#                         background.height=$HEIGHT \
+#                         background.padding_left=5
+
+# sketchybar -m --add event bluetooth_change "com.apple.bluetooth.status" \
+#               --add item headphones right \
+#               --set headphones script="~/.config/sketchybar/plugins/airpods_battery.sh" \
+#               --subscribe headphones bluetooth_change
+
+# sketchybar -m --add item disk_label right \
+#               --set disk_label label.font="FiraCode Nerd Font:Regular:7.0" \
+#                                label=SSD \
+#                                y_offset=5 \
+#                                width=0 \
+# \
+#               --add item disk_percentage right \
+#               --set disk_percentage label.font="FiraCode Nerd Font:Regular:7.0" \
+#                                     y_offset=-4 \
+#                                     update_freq=1 \
+#                                     script="~/.config/sketchybar/plugins/disk.sh"
+#
+# sketchybar -m --add item ram_label right \
+#               --set ram_label label.font="FiraCode Nerd Font:Regular:7.0" \
+#                                label=RAM \
+#                                y_offset=5 \
+#                                width=0 \
+# \
+#               --add item ram_percentage right \
+#               --set ram_percentage label.font="FiraCode Nerd Font:Regular:7.0" \
+#                                     y_offset=-4 \
+#                                     update_freq=1 \
+#                                     script="~/.config/sketchybar/plugins/ram.sh"
+#
+# sketchybar -m --add item cpu_label right \
+#               --set cpu_label label.font="FiraCode Nerd Font:Regular:7.0" \
+#                     label=CPU \
+#                     y_offset=5 \
+#                     width=0 \
+# \
+#               --add item cpu_percent right \
+#               --set cpu_percent label.font="FiraCode Nerd Font:Regular:7.0" \
+#                     y_offset=-4 \
+#                     update_freq=1 \
+#                     script="~/.config/sketchybar/plugins/cpu.sh"
+#
+# sketchybar -m --add item network_up right \
+#               --set network_up label.font="FiraCode Nerd Font:Regular:7.0" \
+#                                icon.font="FiraCode Nerd Font:Regular:7.0" \
+#                                icon= \
+#                                icon.highlight_color=0xff8b0a0d \
+#                                y_offset=5 \
+#                                width=0 \
+#                                update_freq=1 \
+#                                script="~/.config/sketchybar/plugins/network.sh" \
+# \
+#               --add item network_down right \
+#               --set network_down label.font="FiraCode Nerd Font:Regular:7.0" \
+#                                  icon.font="FiraCode Nerd Font:Regular:7.0" \
+#                                  icon= \
+#                                  icon.highlight_color=0xff10528c \
+#                                  y_offset=-4 \
+#                                  update_freq=1
+#
+# sketchybar -m --add item stats_logo right \
+#               --set stats_logo icon= \
+#                                icon.font="FiraCode Nerd Font:Regular:13.0" \
+#                                background.color=0xffD08770 \
+#                                background.height=$HEIGHT
+#
+# sketchybar -m --add item vpn right \
+#               --set vpn icon= \
+#                         icon.color=0xffA3BE8C \
+#                         update_freq=5 \
+#                         script="~/.config/sketchybar/plugins/vpn.sh"
+#
+# sketchybar -m --add item weather right \
+#               --set weather update_freq=21600 \
+#                             script="~/.config/sketchybar/plugins/weather.sh" \
+#                             click_script="open https://darksky.net/forecast/30.098,-95.454/us12/en"
+#
+# sketchybar -m --add item packages right \
+#               --set packages update_freq=1800 \
+#                              script="~/.config/sketchybar/plugins/package_monitor.sh" \
+#                              label= \
+#                              lazy=off \
+#                              background.color=0xff3B4252 \
+#                              background.height=$HEIGHT
+#
+# sketchybar -m --add item messages right \
+#               --set messages update_freq=60 \
+#                              icon= \
+#                              script="~/.config/sketchybar/plugins/messages.sh" \
+#                              background.color=0xff3B4252 \
+#                              background.height=$HEIGHT
+#
+# sketchybar -m --add alias Hammerspoon right \
+#               --set Hammerspoon background.color=0xff3B4252 \
+#                                 background.height=$HEIGHT
+#
+# sketchybar -m --add item misc_logo right \
+#               --set misc_logo icon= \
+#                                icon.font="FiraCode Nerd Font:Regular:13.0" \
+#                                background.color=0xffA3BE8C \
+#                                background.height=$HEIGHT
+#
+# sketchybar -m --add event song_update com.apple.iTunes.playerInfo
+# sketchybar -m --add item music_info left \
+#               --set music_info script="~/.config/sketchybar/plugins/music.sh" \
+#                                click_script="~/.config/sketchybar/plugins/music_click.sh" \
+#               --subscribe music_info song_update
+#
+# ############## BRACKETS ##############
+#  sketchybar -m --add bracket primary_spaces productivity \
+#                                             browser \
+#                                             messaging \
+#                                             reference \
+#                                             code \
+#                                             media \
+#                                             feed \
+#                                             system \
+#                                             vm \
+#   \
+#                --set primary_spaces background.color=0xff3B4252 \
+#                                     background.corner_radius=0 \
+#                                     background.height=$HEIGHT
+#
+#  sketchybar -m --add bracket yabai yabai_mode \
+#                                    yabai_float \
+# \
+#                --set yabai background.color=0xff3B4252 \
+#                            background.corner_radius=0 \
+#                            background.height=$HEIGHT
+#
+#  sketchybar -m --add bracket stats headphones \
+#                                    disk_label \
+#                                    disk_percentage \
+#                                    ram_label \
+#                                    ram_percentage \
+#                                    cpu_label \
+#                                    cpu_percent \
+#                                    network_up \
+#                                    network_down \
+# \
+#                --set stats background.color=0xff3B4252 \
+#                            background.corner_radius=0 \
+#                            background.height=$HEIGHT \
+#                            background.padding_left=5
+#
+#  sketchybar -m --add bracket misc Hammerspoon \
+#                                   messages \
+#                                   packages \
+#                                   weather \
+#                                   vpn \
+# \
+#                --set misc background.color=0xff3B4252 \
+#                           background.height=$HEIGHT \
+#                           background.padding_left=5 \
+#                           background.padding_right=0
+
+############## FINALIZING THE SETUP ##############
+sketchybar --bar topmost=on
+sketchybar -m --update
+
+echo "sketchybar configuration loaded..."

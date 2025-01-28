@@ -1,0 +1,64 @@
+# Focus windows
+# yabai -m config mouse_follows_focus on
+# yabai -m config focus_follows_mouse autofocus
+
+yabai -m space 1 --layout bsp
+yabai -m space 2 --layout bsp
+yabai -m space 3 --layout bsp
+yabai -m space 4 --layout bsp
+yabai -m space 5 --layout bsp
+yabai -m space 6 --layout bsp
+yabai -m space 7 --layout bsp
+
+# Focus navigation
+# yabai -m rule --add app="^.*$" manage=on
+# yabai -m config window_gap 0
+# yabai -m config window_padding 0
+# yabai -m config mouse_modifier none
+
+# # Trigger when a window is created (app is opened)
+# yabai -m signal --add event=window_created action="sketchybar --trigger space_windows_change"
+#
+# # Trigger when a window is moved to a different space
+# yabai -m signal --add event=window_resized action="sketchybar --trigger space_windows_change"
+#
+# # Optional: Trigger when a window is focused (e.g., for dynamic updates)
+# yabai -m signal --add event=window_focused action="sketchybar --trigger space_windows_change"
+
+# Focus windows
+# yabai -m config focus_modifier.ctrl-left SHIFT  
+#  shift. 
+
+# Focus windows
+# yabai -m config mouse_follows_focus on
+# yabai -m config focus_follows_mouse autofocus
+
+# Focus navigation with Hyper key
+# yabai -m key --bind "shift+option+control+h" --action "focus west"
+# yabai -m key --bind "shift+option+control+l" --action "focus east"
+# yabai -m key --bind "shift+option+control+j" --action "focus south"
+# yabai -m key --bind "shift+option+control+k" --action "focus north"
+#
+# # Move windows
+# yabai -m key --bind "shift+option+control+shift+h" --action "move west"
+# yabai -m key --bind "shift+option+control+shift+l" --action "move east"
+# yabai -m key --bind "shift+option+control+shift+j" --action "move south"
+# yabai -m key --bind "shift+option+control+shift+k" --action "move north"
+#
+# # Switch spaces
+# yabai -m key --bind "shift+option+control+1" --action "space --focus 1"
+# yabai -m key --bind "shift+option+control+2" --action "space --focus 2"
+# yabai -m key --bind "shift+option+control+3" --action "space --focus 3"
+# yabai -m key --bind "shift+option+control+4" --action "space --focus 4"
+# yabai -m key --bind "shift+option+control+5" --action "space --focus 5"
+# yabai -m key --bind "shift+option+control+6" --action "space --focus 6"
+# yabai -m key --bind "shift+option+control+7" --action "space --focus 7"
+#
+# # Move windows to spaces
+# yabai -m key --bind "shift+option+control+command+1" --action "window --space 1; space --focus 1"
+# yabai -m key --bind "shift+option+control+command+2" --action "window --space 2; space --focus 2"
+# yabai -m key --bind "shift+option+control+command+3" --action "window --space 3; space --focus 3"
+# yabai -m key --bind "shift+option+control+command+4" --action "window --space 4; space --focus 4"
+# yabai -m key --bind "shift+option+control+command+5" --action "window --space 5; space --focus 5"
+# yabai -m key --bind "shift+option+control+command+6" --action "window --space 6; space --focus 6"
+# yabai -m key --bind "shift+option+control+command+7" --action "window --space 7; space --focus 7"

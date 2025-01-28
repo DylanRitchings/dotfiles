@@ -1,7 +1,0 @@
-#!/bin/bash
-
-#todo:
-#(fix nvim syntax colouring on mac)
-#cd into each repo e.g. nvim (could use jq or just cd into each dir in this repo)
-#make a commit with the OS value in the comment
-#use the for each gitpush that works with submodules
