@@ -1,0 +1,12 @@
+.env                     
+.gitattributes           
+.gitmodules              
+.stow-local-ignore
+/linux                  
+/scripts                 
+/bash
+\.DS_Store
+\.git
+\.gitignore
+mac.sh                   
+windows.sh               
