@@ -78,9 +78,10 @@ sketchybar -m --add item clock right \
                           background.color=0xFF333333 
 
 sketchybar -m --add alias "Stats,Battery" right \
-              color=0xFFFFFFFF \
+              --set "Stats,Battery" \
+              alias.color=0xFFFFFFFF \
               click_script="osascript -e 'tell application \"System Events\" to keystroke \"b\" using {option down, shift down, control down, command down}'" 
-
+#
 # sketchybar -m --add item battery right \
 #               --set battery update_freq=3 \
 #               icon.font="FiraCode Nerd Font:Retina:$((FONT_SIZE + 2))" \
@@ -93,10 +94,11 @@ sketchybar -m --add alias "Stats,Battery" right \
 
 
 sketchybar -m --add alias "Control Centre,BentoBox" right \
-              --set padding_left=0 \
+              --set "Control Centre,BentoBox" padding_left=0 \
               padding_right=0 \
-              color=0xFFFFFFFF \
-              click_script="osascript -e 'tell application \"System Events\" to key code 144'"
+              alias.color=0xFFFFFFFF \
+              click_script="osascript -e 'tell application \"System Events\" to tell process \"Control Center\" to perform action \"AXPress\" of menu bar item 2 of menu bar 1'"
+              # click_script="osascript -e 'tell application \"System Events\" to key code 144'"
                    
 
 # sketchybar -m --add item control_center right \

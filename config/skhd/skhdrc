@@ -3,6 +3,7 @@ shift + alt + ctrl - l : yabai -m window --focus east
 shift + alt + ctrl - j : yabai -m window --focus south
 shift + alt + ctrl - k : yabai -m window --focus north
 
+
 shift + alt + ctrl + cmd - h : yabai -m window --move west
 shift + alt + ctrl + cmd - l : yabai -m window --move east
 shift + alt + ctrl + cmd - j : yabai -m window --move south
@@ -25,12 +26,25 @@ shift + alt + ctrl - r : yabai -m space --rotate 90
 
 shift + alt + ctrl - b : yabai -m space --balance
 
-shift + alt + ctrl + cmd - 1 : yabai -m window --space 1; osascript -e 'tell application "System Events" to key code 18 using {option down, control down, shift down}'
-shift + alt + ctrl + cmd - 2 : yabai -m window --space 2; osascript -e 'tell application "System Events" to key code 19 using {option down, control down, shift down}'
-shift + alt + ctrl + cmd - 3 : yabai -m window --space 3; osascript -e 'tell application "System Events" to key code 20 using {option down, control down, shift down}'
-shift + alt + ctrl + cmd - 4 : yabai -m window --space 4; osascript -e 'tell application "System Events" to key code 21 using {option down, control down, shift down}'
-shift + alt + ctrl + cmd - 5 : yabai -m window --space 5; osascript -e 'tell application "System Events" to key code 23 using {option down, control down, shift down}'
-shift + alt + ctrl + cmd - 6 : yabai -m window --space 6; osascript -e 'tell application "System Events" to key code 22 using {option down, control down, shift down}'
-shift + alt + ctrl + cmd - 7 : yabai -m window --space 7; osascript -e 'tell application "System Events" to key code 26 using {option down, control down, shift down}'
-shift + alt + ctrl + cmd - 8 : yabai -m window --space 8; osascript -e 'tell application "System Events" to key code 28 using {option down, control down, shift down}'
-shift + alt + ctrl + cmd - 9 : yabai -m window --space 9; osascript -e 'tell application "System Events" to key code 25 using {option down, control down, shift down}'
+shift + alt + ctrl + cmd - 1 : yabai -m window --space 1
+shift + alt + ctrl + cmd - 2 : yabai -m window --space 2
+shift + alt + ctrl + cmd - 3 : yabai -m window --space 3
+shift + alt + ctrl + cmd - 4 : yabai -m window --space 4
+shift + alt + ctrl + cmd - 5 : yabai -m window --space 5
+shift + alt + ctrl + cmd - 6 : yabai -m window --space 6
+shift + alt + ctrl + cmd - 7 : yabai -m window --space 7
+shift + alt + ctrl + cmd - 8 : yabai -m window --space 8
+shift + alt + ctrl + cmd - 9 : yabai -m window --space 9
+
+#shift + alt + ctrl + cmd - 1 : yabai -m window --space 1; osascript -e 'tell application "System Events" to key code 18 using {option down, control down, shift down}'
+#shift + alt + ctrl + cmd - 2 : yabai -m window --space 2; osascript -e 'tell application "System Events" to key code 19 using {option down, control down, shift down}'
+#shift + alt + ctrl + cmd - 3 : yabai -m window --space 3; osascript -e 'tell application "System Events" to key code 20 using {option down, control down, shift down}'
+#shift + alt + ctrl + cmd - 4 : yabai -m window --space 4; osascript -e 'tell application "System Events" to key code 21 using {option down, control down, shift down}'
+#shift + alt + ctrl + cmd - 5 : yabai -m window --space 5; osascript -e 'tell application "System Events" to key code 23 using {option down, control down, shift down}'
+#shift + alt + ctrl + cmd - 6 : yabai -m window --space 6; osascript -e 'tell application "System Events" to key code 22 using {option down, control down, shift down}'
+#shift + alt + ctrl + cmd - 7 : yabai -m window --space 7; osascript -e 'tell application "System Events" to key code 26 using {option down, control down, shift down}'
+#shift + alt + ctrl + cmd - 8 : yabai -m window --space 8; osascript -e 'tell application "System Events" to key code 28 using {option down, control down, shift down}'
+#shift + alt + ctrl + cmd - 9 : yabai -m window --space 9; osascript -e 'tell application "System Events" to key code 25 using {option down, control down, shift down}'
+
+
+
