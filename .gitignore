@@ -1,0 +1,20 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# nvim swap and backup files
+*.swp
+*.swo
+*.bak
+
+#tmux plugins
+*/tmux/plugins/
+
+# Other common macOS files
+.idea/
+.vscode/
+*.log
