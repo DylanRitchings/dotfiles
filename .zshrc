@@ -1,22 +1,15 @@
-export ZSH="$HOME/.oh-my-zsh"
-export PATH=/Users/dylan/Library/Python/3.12/bin:$PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# >>> JVM installed by coursier >>>
+export JAVA_HOME="/Users/dylan/Library/Caches/Coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_mac_hotspot_8u292b10.tar.gz/jdk8u292-b10/Contents/Home"
+# <<< JVM installed by coursier <<<
 
-ZSH_THEME="eastwood"
+# >>> coursier install directory >>>
+export PATH="$PATH:/Users/dylan/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<
+export PATH="/opt/homebrew/bin:$PATH"
 
-plugins=(
-    fzf
-    fzf-tab
-    zsh-autosuggestions
-    git
-    colorize
-    history
-    aws
-    web-search
-    zsh-syntax-highlighting
-    F-Sy-H
-    #emacs
-)
+export PATH=$PATH:~/.android-sdk-macosx/platform-tools/
 
-source $ZSH/oh-my-zsh.sh
-export EDITOR=nvim
-[ -f "~/dev/personal_repos/dotfiles/bash/init.sh" ] && source ~/dev/personal_repos/dotfiles/bash/init.sh
+[ -f "$HOME/dev/personal_repos/dotfiles/bash/init.sh" ] && source $HOME/dev/personal_repos/dotfiles/bash/init.sh
+
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

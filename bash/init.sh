@@ -1,17 +1,17 @@
-
-[ -f "./setup.sh" ] && source ./setup.sh
-[ -f "./aliases.sh" ] && source ./aliases.sh
-[ -f "./functions.sh" ] && source ./functions.sh
-
+DOTFILES=$HOME/dev/personal_repos/dotfiles/bash/
+[ -f "$DOTFILES/setup.sh" ] && source $DOTFILES/setup.sh
+[ -f "$DOTFILES/aliases.sh" ] && source $DOTFILES/aliases.sh
+[ -f "$DOTFILES/functions.sh" ] && source $DOTFILES/functions.sh
+[ -f "$DOTFILES/settings.sh" ] && source $DOTFILES/settings.sh
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  [ -f "./mac.sh" ] && source ./mac.sh
+  [ -f "$DOTFILES/mac.sh" ] && source $DOTFILES/mac.sh
 fi
 
 if [[ "$MSYSTEM" == "MINGW64" ]] ; then
-  [ -f "./private-bash/init.sh" ] && source ./private-bash/init.sh
+  [ -f "$DOTFILES/private-bash/init.sh" ] && source $DOTFILES/private-bash/init.sh
 fi
 
-[ -f "./finalize.sh" ] && source ./finalize.sh
+[ -f "$DOTFILES/finalize.sh" ] && source $DOTFILES/finalize.sh
 
 
 
