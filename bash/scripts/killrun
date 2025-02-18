@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SESSION="processes"
+
+# Get list of windows (excluding the first 'main' window)
+WINDOW=$(tmux list-windows -t $SESSION -F "#{window_name}" | tail -n +2 | fzf --prompt="Select process to kill: ")
+
+# Exit if no selection
+[ -z "$WINDOW" ] && echo "No process selected." && exit 1
+
+# Kill selected window
+tmux kill-window -t "$SESSION:$WINDOW"
+echo "Killed process: $WINDOW"

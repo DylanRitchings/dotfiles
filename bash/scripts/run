@@ -1,0 +1,28 @@
+#!/bin/bash
+
+SESSION="processes"
+
+# Check if the session exists
+tmux has-session -t $SESSION 2>/dev/null
+if [ $? != 0 ]; then
+    echo "Creating tmux session: $SESSION"
+    tmux new-session -d -s $SESSION -n main
+fi
+
+# Ensure at least two arguments are provided (window name and command)
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <window-name> <command...>"
+    exit 1
+fi
+
+# Extract window name and command
+WIN_NAME=$1
+CMD="$@"
+
+# Function to create a window only if it doesn’t exist
+if ! tmux list-windows -t $SESSION | grep -q "^.*$WIN_NAME.*$"; then
+    echo "Creating window: $WIN_NAME"
+    tmux new-window -t $SESSION -n "$WIN_NAME" "$CMD"
+else
+    echo "Window $WIN_NAME already exists"
+fi
