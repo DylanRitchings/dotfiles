@@ -1,17 +1,39 @@
 # Focus windows
 # yabai -m config mouse_follows_focus on
 # yabai -m config focus_follows_mouse autofocus
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
-yabai -m space 1 --layout bsp
-yabai -m space 2 --layout bsp
-yabai -m space 3 --layout bsp
-yabai -m space 4 --layout bsp
-yabai -m space 5 --layout bsp
-yabai -m space 6 --layout bsp
-yabai -m space 7 --layout bsp
+yabai -m space 1 --display 0
+yabai -m space 2 --display 0
+yabai -m space 3 --display 0
+yabai -m space 4 --display 0
+yabai -m space 5 --display 0
+yabai -m space 6 --display 0
+yabai -m space 7 --display 0
+yabai -m space 8 --display 0
+yabai -m space 9 --display 0 --layout float
+
+
+yabai -m space 10 --display 0
+yabai -m space 11 --display 0
+yabai -m space 12 --display 0
+yabai -m space 13 --display 0
+yabai -m space 14 --display 0
+yabai -m space 15 --display 0
+yabai -m space 16 --display 0
+yabai -m space 17 --display 0
+yabai -m space 18 --display 0 --layout float
+
 
 yabai -m config focus_follows_mouse on
 yabai -m config window_focus_on_switch on
+yabai -m config layout bsp
+# yabai -m config top_padding 24
+
+yabai -m config --dispaly 0 external_bar all:00000000:0
+yabai -m config --dispaly 1 external_bar all:32:0
+yabai -m config --dispaly 2 external_bar all:32:0
 
 # Focus navigation
 # yabai -m rule --add app="^.*$" manage=on

@@ -20,6 +20,7 @@ zstyle ':completion:*' matcher-list '' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 
 
+eval "$(/usr/libexec/path_helper)"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 
