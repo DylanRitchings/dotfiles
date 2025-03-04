@@ -1,0 +1,29 @@
+{
+  "title": "fn + d desktop",
+  "rules": [
+    {
+      "description": "fn + d desktop",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f11"
+            }
+          ],
+          "type": "basic"
+        }
+        ]
+    }
+  ]
+}
