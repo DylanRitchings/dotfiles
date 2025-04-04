@@ -8,13 +8,13 @@
     sc-im
      
     #OS
+    syncthing
     sketchybar
-    # skhd = {
-    #     enable = true;
-    #   };
-    # yabai = {
-    #     enable = true;
-    #   };
+    sketchybar-app-font
+    skhd 
+    yabai
+    raycast
+    # karabiner-elements
  
     #languages
     python3
@@ -25,11 +25,18 @@
     #tools
     tmux
     jq
+    fd
     just
     ripgrep
     stow
 
   ];
+  services.sketchybar.enable = true;
+  services.yabai.enable = true;
+  services.skhd.enable = true;
+  # services.syncthing.enable = true;
+  # raycast.enable = true;
+  # services.karabiner-elements.enable = true;
   environment.variables.EDITOR = "nvim";
   homebrew = {
     enable = true;
@@ -62,17 +69,16 @@
       "alacritty"
       "librewolf"
       "obsidian"
-      "syncthing"
       "shottr"
 
       "discord"
       "libreoffice"
 
       "jellyfin-media-player"
-      "raycast" 
 
       "bitwarden"
       "steam"
+      "karabiner-elements"
       #creation
       
 

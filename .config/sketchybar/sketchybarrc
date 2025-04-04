@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HEIGHT=29
+HEIGHT=38
 FONT_SIZE=12
 ############## BAR ##############
 sketchybar -m --bar height=$HEIGHT \

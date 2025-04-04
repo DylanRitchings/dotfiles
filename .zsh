@@ -1,8 +1,5 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH"
 # >>> JVM installed by coursier >>>
-
 export JAVA_HOME="/Users/dylan/Library/Caches/Coursier/arc/https/github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u292-b10/OpenJDK8U-jdk_x64_mac_hotspot_8u292b10.tar.gz/jdk8u292-b10/Contents/Home"
 # <<< JVM installed by coursier <<<
 
@@ -18,14 +15,13 @@ export PATH=$PATH:~/.android-sdk-macosx/platform-tools/
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-
 typeset -U path cdpath fpath manpath
 
-#for profile in ${(z)NIX_PROFILES}; do
-#  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
-#done
-#
-#HELPDIR="/nix/store/6hf7mz56ghwfrnyknhplwmx39kg9gqmg-zsh-5.9/share/zsh/$ZSH_VERSION/help"
+for profile in ${(z)NIX_PROFILES}; do
+  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
+done
+
+HELPDIR="/nix/store/6hf7mz56ghwfrnyknhplwmx39kg9gqmg-zsh-5.9/share/zsh/$ZSH_VERSION/help"
 
 
 
@@ -35,12 +31,6 @@ typeset -U path cdpath fpath manpath
 # calling it twice causes slight start up slowdown
 # as all $fpath entries will be traversed again.
 autoload -U compinit && compinit
-
-
-
-
-
-
 
 # History options should be set in .zshrc and after oh-my-zsh sourcing.
 # See https://github.com/nix-community/home-manager/issues/177.

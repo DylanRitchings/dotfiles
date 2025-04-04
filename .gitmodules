@@ -1,9 +1,9 @@
 [submodule "nvim"]
 	path = .config/nvim
-	url = https://github.com/DylanRitchings/nvim
+	url = git@github.com:DylanRitchings/nvim
 [submodule ".config/nvim"]
 	path = .config/nvim
-	url = https://github.com/DylanRitchings/nvim
+	url = git@github.com:DylanRitchings/nvim
 [submodule "bash/private-bash"]
 	path = bash/private-bash
-	url = https://github.com/mo-dylanritchings/private-bash
+	url = git@github.com:mo-dylanritchings/private-bash

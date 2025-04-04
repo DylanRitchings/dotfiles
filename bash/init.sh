@@ -1,4 +1,4 @@
-DOTFILES=$HOME/dev/personal_repos/dotfiles/bash/
+DOTFILES=$HOME/dev/repos/dotfiles/bash/
 [ -f "$DOTFILES/setup.sh" ] && source $DOTFILES/setup.sh
 [ -f "$DOTFILES/aliases.sh" ] && source $DOTFILES/aliases.sh
 [ -f "$DOTFILES/functions.sh" ] && source $DOTFILES/functions.sh
