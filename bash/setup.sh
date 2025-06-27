@@ -1,22 +1,52 @@
-export ZSH="$HOME/.oh-my-zsh"
+
+# zmodload zsh/zprof  
+DISABLE_AUTO_UPDATE=true
+ export ZSH="$HOME/.oh-my-zsh"
+# ZDOTDIR=$HOME/.config/zsh/
+# ZSH_CUSTOM=$HOME/.config/zsh/
+#
+# source $ZSH_CUSTOM/antidote/antidote.zsh
+
+
 export PATH=/Users/dylan/Library/Python/3.12/bin:$PATH
 
-ZSH_THEME="eastwood"
+zstyle ':completion:*' audit 'no'
 
+# # If ZSH is not defined, use the current script's directory.
+# [[ -z "$ZSH" ]] && export ZSH=$HOME/.config/zsh/
+#
+# # Set ZSH_CACHE_DIR to the path where cache files should be created
+# # or else we will use the default cache/
+# if [[ -z "$ZSH_CACHE_DIR" ]]; then
+#   ZSH_CACHE_DIR="$ZSH/cache"
+# fi
+# fpath=("$ZSH/functions" "$ZSH/completions" $fpath)
+# autoload -U compaudit compinit zrecompile
+#
+# # Skip the compaudit security check (can speed up the process)
+#
+# antidote bundle <$ZSH_CUSTOM/.zsh_plugins.txt >$ZSH_CUSTOM/.zsh_plugins.zsh
+# source $ZSH_CUSTOM/.zsh_plugins.zsh
+# [[ -z "$LS_COLORS" ]] || zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+ZSH_THEME="eastwood"
 plugins=(
     fzf
     fzf-tab
     zsh-autosuggestions
-    git
+    zsh-syntax-highlighting
+    # git
     colorize
     history
-    aws
+    # aws
     web-search
-    zsh-syntax-highlighting
     F-Sy-H
     #emacs
 )
 
+
 source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
-
+# zprof  
+# source $HOME/.config/.antidote
+# antidote load $plugins
