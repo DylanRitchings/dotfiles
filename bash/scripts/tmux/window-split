@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+pane_count=$(tmux list-windows | wc -l)
+
+if [ $pane_count = 2 ]
+then
+  current_window=$(tmux display-message -p '#I')
+  other_window=$((1 - current_window))
+  tmux join-pane -h -s :$other_window
+  tmux bind-key -n C-t select-pane -R
+else 
+  tmux break-pane
+  tmux bind-key -n C-t next-window 
+fi
+
+
+
