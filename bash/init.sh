@@ -14,8 +14,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   [ -f "$BASHFILES/mac.sh" ] && source $BASHFILES/mac.sh
 fi
 
-if [[ "$MSYSTEM" == "MINGW64" ]] || [[ "$MSYSTEM" == "UCRT64" ]] ; then
-  [ -f "$BASHFILES/private-bash/init.sh" ] && source $BASHFILES/private-bash/init.sh
+if [[ "$MSYSTEM" == "MINGW64" ]] || [[ "$MSYSTEM" == "UCRT64" ]]  || [[ "$MSYSTEM" == "MSYS" ]] ; then
+  [ -f "$DOTFILES/private-bash/init.sh" ] && source $DOTFILES/private-bash/init.sh
 fi
 
 [ -f "$BASHFILES/finalize.sh" ] && source $BASHFILES/finalize.sh
