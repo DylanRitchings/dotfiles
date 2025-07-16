@@ -1,13 +1,4 @@
-
-# zmodload zsh/zprof  
-DISABLE_AUTO_UPDATE=true
- export ZSH="$HOME/.oh-my-zsh"
-# ZDOTDIR=$HOME/.config/zsh/
-# ZSH_CUSTOM=$HOME/.config/zsh/
-#
-# source $ZSH_CUSTOM/antidote/antidote.zsh
-
-
+export ZSH="$HOME/.config/oh-my-zsh"
 export PATH=/Users/dylan/Library/Python/3.12/bin:$PATH
 
 zstyle ':completion:*' audit 'no'
@@ -47,6 +38,4 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
-# zprof  
-# source $HOME/.config/.antidote
-# antidote load $plugins
+export DISPLAY=:0

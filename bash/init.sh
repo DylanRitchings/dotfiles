@@ -1,23 +1,22 @@
-DOTFILES=$HOME/dev/repos/dotfiles/bash/
-[ -f "$DOTFILES/setup.sh" ] && source $DOTFILES/setup.sh
+DOTFILES=$HOME/dev/repos/dotfiles
+BASHFILES=$DOTFILES/bash
+SCRIPTS=$BASHFILES/scripts
 
-[ -f "$DOTFILES/settings.sh" ] && source $DOTFILES/settings.sh
-[ -f "$DOTFILES/aliases.sh" ] && source $DOTFILES/aliases.sh
-[ -f "$DOTFILES/functions.sh" ] && source $DOTFILES/functions.sh
-[ -f "$DOTFILES/settings.sh" ] && source $DOTFILES/settings.sh
+if [[ ":$PATH:" != *":$SCRIPTS:"* ]]; then
+  export PATH="$SCRIPTS:$PATH"
+fi
+
+# [ -f "$BASHFILES/setup.sh" ] && source $BASHFILES/setup.sh
+[ -f "$BASHFILES/aliases.sh" ] && source $BASHFILES/aliases.sh
+[ -f "$BASHFILES/functions.sh" ] && source $BASHFILES/functions.sh
+[ -f "$BASHFILES/settings.sh" ] && source $BASHFILES/settings.sh
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  [ -f "$DOTFILES/mac.sh" ] && source $DOTFILES/mac.sh
+  [ -f "$BASHFILES/mac.sh" ] && source $BASHFILES/mac.sh
 fi
 
 if [[ "$MSYSTEM" == "MINGW64" ]] || [[ "$MSYSTEM" == "UCRT64" ]] ; then
-  [ -f "$DOTFILES/private-bash/init.sh" ] && source $DOTFILES/private-bash/init.sh
+  [ -f "$BASHFILES/private-bash/init.sh" ] && source $BASHFILES/private-bash/init.sh
 fi
 
-[ -f "$DOTFILES/finalize.sh" ] && source $DOTFILES/finalize.sh 
-
-
-
-
-
-
+[ -f "$BASHFILES/finalize.sh" ] && source $BASHFILES/finalize.sh
 

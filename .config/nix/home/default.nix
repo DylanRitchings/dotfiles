@@ -6,10 +6,11 @@
   imports = [
     ./core.nix
     ./git.nix
-    # ./shell.nix
+    ./shell.nix
     ./ssh.nix
     ./starship.nix
     # ./os.nix
+    ./syncthing.nix
   ];
 
   # Home Manager needs a bit of information about you and the

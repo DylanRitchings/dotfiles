@@ -12,17 +12,18 @@
   ###################################################################################
 {
   system = {
+    primaryUser = "dylan";
     stateVersion = 5;
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
-    activationScripts.postUserActivation.text = ''
+    # activationScripts.postUserActivation.text = ''
       # activateSettings -u will reload the settings from the database and apply them to the current session,
       # so we do not need to logout and login again to make the changes take effect.
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    '';
+      # /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    # '';
 
     defaults = {
       # menuExtraClock.Show24Hour = true;  # show 24 hour clock
-      
+      WindowManager.HideDesktop = true;
       # customize dock
       dock = {
         autohide = true;
@@ -58,6 +59,7 @@
       # customize settings that not supported by nix-darwin directly
       # Incomplete list of macOS `defaults` commands :
       #   https://github.com/yannbertrand/macos-defaults
+
       NSGlobalDomain = {
         # `defaults read NSGlobalDomain "xxx"`
         "com.apple.swipescrolldirection" = true;  # enable natural scrolling(default to true)
@@ -65,6 +67,7 @@
         AppleInterfaceStyle = "Dark";  # dark mode
         AppleKeyboardUIMode = 3;  # Mode 3 enables full keyboard control.
         ApplePressAndHoldEnabled = true;  # enable press and hold
+        _HIHideMenuBar = true;
 
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
@@ -88,7 +91,7 @@
       # 
       # All custom entries can be found by running `defaults read` command.
       # or `defaults read xxx` to read a specific domain.
-      CustomUserPreferences = {
+      CustomUserPreferences = { #TODO add these settings here (desktop change command, wallpaper setting )
         ".GlobalPreferences" = {
           # automatically switch to a new space when switching to the application
           AppleSpacesSwitchOnActivate = true;
@@ -150,7 +153,10 @@
   };
 
   # Add ability to used TouchID for sudo authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services = { 
+      sudo_local.touchIdAuth = true;
+      # sudo_local.reattach = true;
+    };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   # this is required if you want to use darwin's default shell - zsh
@@ -162,6 +168,7 @@
   # Set your time zone.
   time.timeZone = "Europe/London";
 
-  fonts.packages = with pkgs; [ nerdfonts ];
+  fonts.packages = with pkgs; builtins.filter lib.attrsets.isDerivation (builtins.attrValues nerd-fonts);
+  # fonts.packages = with pkgs; [ nerdfonts ];
 
 }

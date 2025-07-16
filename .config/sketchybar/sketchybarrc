@@ -39,14 +39,14 @@ for sid in "${SPACE_SIDS[@]}"
 do
   sketchybar --add space space.$sid left                                 \
              --set space.$sid  \
-                              icon=$sid                                  \
+                              icon=$sid \
                               associated_space=$sid \
                               associated_display=1 \
                               label.font="sketchybar-app-font:Regular:${FONT_SIZE}" \
                               icon.highlight_color=0xFFA3BE8C \
                               script="~/.config/sketchybar/plugins/space_windows.sh"  \
                               background.color=0xFF000000 \
-                              background.height=$((HEIGHT - 7)) \
+                              background.height=$((HEIGHT - 12)) \
                               background.corner_radius=8 \
                               padding_left=4 \
                               padding_right=4 \
@@ -72,15 +72,28 @@ sketchybar -m --add item clock right \
                           padding_left=4 \
                           padding_right=4 \
                           icon.padding_right=5 \
-                          icon.font="FiraCode Nerd Font:Bold:${FONT_SIZE}" \
+                          icon.font="FiraCode Nerd Font:Bold:$((FONT_SIZE + 3))" \
                           background.corner_radius=8 \
-                          background.height=$((HEIGHT - 7)) \
-                          background.color=0xFF333333 
+                          background.height=$((HEIGHT - 12)) 
+                          # background.color=0xFF333333 
+
+sketchybar -m --add alias "Control Center,BentoBox" right \
+              --set "Control Center,BentoBox" padding_left=0 \
+              padding_right=-10 \
+              alias.color=0xFFFFFFFF \
+              click_script="osascript -e 'tell application \"System Events\" to tell process \"Control Center\" to perform action \"AXPress\" of menu bar item 2 of menu bar 1'"
+
+sketchybar -m --add alias "Control Center,Battery" right \
+              --set "Control Center,Battery" \
+              padding_right=-12 \
+              alias.color=0xFFFFFFFF \
+              click_script="osascript -e 'tell application \"System Events\" to keystroke \"b\" using {option down, shift down, control down, command down}'" 
+
 
 sketchybar -m --add alias "Stats,Battery" right \
               --set "Stats,Battery" \
               alias.color=0xFFFFFFFF \
-              click_script="osascript -e 'tell application \"System Events\" to keystroke \"b\" using {option down, shift down, control down, command down}'" 
+              # click_script="osascript -e 'tell application \"System Events\" to keystroke \"b\" using {option down, shift down, control down, command down}'" 
 #
 # sketchybar -m --add item battery right \
 #               --set battery update_freq=3 \
@@ -93,12 +106,6 @@ sketchybar -m --add alias "Stats,Battery" right \
 
 
 
-sketchybar -m --add alias "Control Centre,BentoBox" right \
-              --set "Control Centre,BentoBox" padding_left=0 \
-              padding_right=0 \
-              alias.color=0xFFFFFFFF \
-              click_script="osascript -e 'tell application \"System Events\" to tell process \"Control Center\" to perform action \"AXPress\" of menu bar item 2 of menu bar 1'"
-              # click_script="osascript -e 'tell application \"System Events\" to key code 144'"
                    
 
 # sketchybar -m --add item control_center right \

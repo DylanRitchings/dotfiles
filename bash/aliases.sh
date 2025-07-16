@@ -4,6 +4,7 @@ alias cdd='cd ~/dev/'
 
 alias vim='nvim'
 alias vi='nvim'
+alias nixsrc="(cd $DOTFILES/.config/nix && just rebuild_system)"
 
 # alias py="python3"
 # alias python="python3"

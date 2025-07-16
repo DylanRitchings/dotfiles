@@ -5,11 +5,11 @@ program = "/bin/zsh"
 bindings = [
   { key = "Escape", mods="Super",  action = "ToggleViMode" }, #mode="~Vi",
   { key = "c", mods="Alt", action = "Copy" },
-  { key = "v", mods="Alt", action = "Paste" }
+  { key = "v", mods="Alt", action = "Paste" },
 ]
 
 [window]
-opacity = 0.8
+opacity = 0.7
 decorations = "none"
 
 [font]
