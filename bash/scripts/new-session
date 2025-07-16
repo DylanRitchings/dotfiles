@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-read -p "Session name: " name || exit 0
-if [[ -n "$name" ]]; then
-  tmux new-session -d -s "$name" && tmux switch-client -t "$name"
-fi
