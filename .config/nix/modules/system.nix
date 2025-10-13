@@ -11,6 +11,7 @@
   #
   ###################################################################################
 {
+
   system = {
     primaryUser = "dylan";
     stateVersion = 5;
@@ -29,6 +30,7 @@
         autohide = true;
         expose-animation-duration = null;
         show-recents = false;  # disable recent apps
+        mru-spaces = false;
 
         # Hot Corners
         wvous-tl-corner = 1;  

@@ -53,10 +53,26 @@
     typescript
     typescript-language-server
     imagemagick
+    exiftool
+
+    #email
+    isync
+    msmtp
+    neomutt
+    wakeonlan
+    btop
+    # tailscale
+
   ];
 
   services = {
     sketchybar.enable = true;
+    # isync.enable = true;
+    # msmtp.enable = true;
+
+    # tailscale = {
+    #   enable = true;
+    # };
     yabai = {
       enable = true;
       enableScriptingAddition = true; 
@@ -96,6 +112,7 @@
     taps = [
       "homebrew/services"
       "localstack/tap"
+      "krishkrosh/apps"
     ];
 
 
@@ -104,6 +121,8 @@
       "gtk+3"
       "cairo" 
       "pkg-config"
+      "yt-dlp"
+      "ffmpeg"
     ];
 
 
@@ -114,7 +133,7 @@
       "brave-browser"
       "obsidian"
       "shottr" #TODO move to top?
-      "syncthing"
+      "syncthing-app"
       "spotify"
 
       "discord"
@@ -131,13 +150,27 @@
       "raycast"
       "stats"
       "balenaetcher"
-      "bambu-studio"
       "autodesk-fusion"
       "netdownloadhelpercoapp"
       "affinity-photo"
+      "fx-cast-bridge"
+      "orcaslicer"
+      "electrum"
+      "trackweight"
+      "telegram"
+      "tailscale-app"
+      "openscad"
+      "digiKam"
+      "firefox"
+      "proton-mail-bridge"
       #creation
       
 
     ];
   };
 }
+
+
+
+
+

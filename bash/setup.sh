@@ -39,3 +39,4 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
 export DISPLAY=:0
+export MSMTP_CONFIG=~/.config/msmtp/config
