@@ -27,6 +27,7 @@
     pyenv
     ansible
     terraform
+    terraform-ls
     sourcekit-lsp
     glib
 
@@ -61,7 +62,12 @@
     neomutt
     wakeonlan
     btop
+    presenterm
     # tailscale
+    gcc-arm-embedded
+    openocd
+    dfu-util
+    gnumake
 
   ];
 
@@ -105,7 +111,7 @@
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas 
     masApps = {
-      Xcode = 497799835;
+      # Xcode = 497799835;
 
     };
 
@@ -163,9 +169,15 @@
       "digiKam"
       "firefox"
       "proton-mail-bridge"
-      #creation
-      
+      "coconutbattery"
+      "calibre"
+      "scroll-reverser"
 
+      "cardinal" # music rack
+      "epic-games"
+      "ableton-live-suite@11"
+      "vlc"
+      "transmission"
     ];
   };
 }

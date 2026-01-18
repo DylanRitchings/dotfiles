@@ -24,6 +24,17 @@
 
     defaults = {
       # menuExtraClock.Show24Hour = true;  # show 24 hour clock
+      # HIToolbox = {
+      #   AppleCurrentKeyboardLayoutInputSourceID = "com.apple.keylayout.USInternational-PC";
+      #   AppleEnabledInputSources = [
+      #     {
+      #       InputSourceKind = "Keyboard Layout";
+      #       "KeyboardLayout ID" = 15000;
+      #       "KeyboardLayout Name" = "U.S. International - PC";
+      #     }
+      #   ];
+      # };
+
       WindowManager.HideDesktop = true;
       # customize dock
       dock = {
@@ -156,8 +167,10 @@
 
   # Add ability to used TouchID for sudo authentication
   security.pam.services = { 
-      sudo_local.touchIdAuth = true;
-      # sudo_local.reattach = true;
+      sudo_local = {
+        touchIdAuth = true;
+        reattach = true;
+      };
     };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -172,5 +185,4 @@
 
   fonts.packages = with pkgs; builtins.filter lib.attrsets.isDerivation (builtins.attrValues nerd-fonts);
   # fonts.packages = with pkgs; [ nerdfonts ];
-
 }
