@@ -14,20 +14,27 @@ if [ "$SENDER" = "space_windows_change" ] || [ "$SENDER" = "front_app_switched" 
       while IFS= read -r app; do
         if [ -n "$app" ]; then
           icon=$(~/.config/sketchybar/plugins/icon_map.sh "$app")
-          # If this is the focused app, make it grey; otherwise white
-          if [ "$app" = "$focused_app" ]; then
-            icon_strip+=" :--:${icon}:--:"
-          else
-            icon_strip+=" ${icon}"
-          fi
+          icon_strip+=" ${icon}"
         fi
       done <<< "$apps"
     fi
 
+    # Determine if this space has the focused app
+    space_has_focus=false
+    if echo "$apps" | grep -q "^${focused_app}$"; then
+      space_has_focus=true
+    fi
+
     if [ -z "$icon_strip" ]; then
-      sketchybar --set space.$space_num label="" label.padding_right=0 
+      sketchybar --set space.$space_num label="" label.padding_right=0 label.highlight=off
     else
-      sketchybar --set space.$space_num label="$icon_strip" label.padding_right=8 
+      if [ "$space_has_focus" = true ]; then
+        # Space contains focused app - use highlight color for all icons in this space
+        sketchybar --set space.$space_num label="$icon_strip" label.padding_right=8 label.highlight=on
+      else
+        # No focus - use normal color
+        sketchybar --set space.$space_num label="$icon_strip" label.padding_right=8 label.highlight=off
+      fi
     fi
   done
 fi
