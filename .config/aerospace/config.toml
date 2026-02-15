@@ -1,0 +1,74 @@
+# AeroSpace Configuration
+# Place this file in: ~/.config/aerospace/config.toml
+# Reference: https://github.com/nikitabobko/AeroSpace
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# Gaps between windows (inner) and outer padding (between windows and screen edges)
+[gaps]
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 28  # Top padding for sketchybar - adjust to match your bar height
+outer.right = 10
+
+# Mouse follows focus
+[mode.main.binding]
+# See: https://nikitabobko.github.io/AeroSpace/commands
+# Keybindings defined in karabiner, so keep this minimal or empty
+# Add any aerospace-specific commands here if needed
+
+# Layout management (if you want aerospace to handle these)
+# alt-slash = 'layout tiles horizontal vertical'
+# alt-comma = 'layout accordion horizontal vertical'
+
+# Fullscreen and floating (if not in karabiner)
+# alt-f = 'fullscreen'
+# alt-shift-space = 'layout floating tiling'
+
+# Balance window sizes
+# alt-b = 'balance-sizes'
+
+# Workspace layout - define 9 workspaces to match your setup
+[[workspace]]
+workspace = 1
+
+[[workspace]]
+workspace = 2
+
+[[workspace]]
+workspace = 3
+
+[[workspace]]
+workspace = 4
+
+[[workspace]]
+workspace = 5
+
+[[workspace]]
+workspace = 6
+
+[[workspace]]
+workspace = 7
+
+[[workspace]]
+workspace = 8
+
+[[workspace]]
+workspace = 9
+
+# Callbacks to notify sketchybar when layout changes
+[on-window-detected]
+run = ['sketchybar', '--trigger', 'space_windows_change']
+
+[on-focused-monitor-changed]
+run = ['sketchybar', '--trigger', 'space_changed']
+
+[on-workspace-changed]
+run = ['sketchybar', '--trigger', 'space_changed']
