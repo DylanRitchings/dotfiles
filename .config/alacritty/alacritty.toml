@@ -10,7 +10,8 @@ bindings = [
 
 [window]
 opacity = 0.7
-decorations = "none"
+decorations = "buttonless"  # Changed from "none" to allow window manager tiling
+resize_increments = false
 
 [font]
 normal={family = "FiraCode Nerd Font"}
