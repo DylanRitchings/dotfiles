@@ -10,6 +10,8 @@
       # Automatically switch between macOS Spaces when switching workspaces
       automatically-unhide-macos-hidden-apps = false;
       
+      start-at-login = true;
+
       # Use macOS native spaces instead of creating virtual workspaces
       # Map aerospace workspaces to macOS Mission Control spaces
       workspace-to-monitor-force-assignment = {
