@@ -23,10 +23,6 @@
         "9" = 1;
       };
 
-      # Callbacks to notify sketchybar
-      exec-on-workspace-change = ["~/.config/sketchybar/plugins/aerospace_refresh.sh"];
-      on-window-detected = ["~/.config/sketchybar/plugins/aerospace_refresh.sh"];
-
       # Keybindings
       mode.main.binding = {
         # Switch to workspace with Shift+Option+Control+num
