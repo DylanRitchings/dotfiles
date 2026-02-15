@@ -24,8 +24,8 @@
       };
 
       # Callbacks to notify sketchybar
-      exec-on-workspace-change = ["/bin/bash" "-c" "~/.config/sketchybar/plugins/aerospace_refresh.sh"];
-      on-window-detected = ["/bin/bash" "-c" "~/.config/sketchybar/plugins/aerospace_refresh.sh"];
+      exec-on-workspace-change = ["~/.config/sketchybar/plugins/aerospace_refresh.sh"];
+      on-window-detected = ["~/.config/sketchybar/plugins/aerospace_refresh.sh"];
 
       # Keybindings
       mode.main.binding = {
