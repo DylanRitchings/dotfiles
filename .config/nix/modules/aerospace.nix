@@ -2,7 +2,7 @@
   services.aerospace = {
     enable = true;
     settings = {
-      start-at-login = true;
+      # start-at-login managed by nix-darwin/launchd, not aerospace itself
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
       
