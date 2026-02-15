@@ -1,39 +1,37 @@
 #!/bin/bash
 if [ "$SENDER" = "space_windows_change" ]; then
-  space="$(echo "$INFO" | jq -r '.space')"
-  apps="$(echo "$INFO" | jq -r '.apps | keys[]')"
+  # Get current workspace from aerospace
+  current_space=$(aerospace list-workspaces --focused)
+  
+  # Get all windows in the current workspace
+  apps=$(aerospace list-windows --workspace "$current_space" --format "%{app-name}" | sort -u)
+  
   icon_strip=""
-
-  # current_focused_app=$(yabai -m query --windows --window | jq -r '.app')  
-
-  if [ "${apps}" != "" ]; then
-    while read -r app
-    do
-      icon_strip+=" $(./plugins/icon_map.sh "$app")"
-      
-    done <<< "${apps}"
-  else
-    icon_strip=""
+  if [ -n "$apps" ]; then
+    while IFS= read -r app; do
+      if [ -n "$app" ]; then
+        icon_strip+=" $(~/.config/sketchybar/plugins/icon_map.sh "$app")"
+      fi
+    done <<< "$apps"
   fi
 
   if [ -z "$icon_strip" ]; then
-    sketchybar --set space.$space label="$icon_strip" label.padding_right=0 
+    sketchybar --set space.$current_space label="$icon_strip" label.padding_right=0 
   else
-    sketchybar --set space.$space label="$icon_strip" label.padding_right=8 
-
+    sketchybar --set space.$current_space label="$icon_strip" label.padding_right=8 
   fi
-
 fi
 
 if [ "$SENDER" = "space_change" ]; then
+  # Get current focused workspace
+  current_space=$(aerospace list-workspaces --focused)
+  
+  # Highlight current space
+  sketchybar --set space.$current_space background.color=0xFF666666 
 
-  # current_space=$(yabai -m query --spaces --space | jq -r '.index')
-  space="$(echo "$INFO" | jq -r '."display-1"')"
-  sketchybar --set space.$space background.color=0xFF666666 
-
-  all_spaces=$(yabai -m query --spaces | jq -r '.[].index')
-  for s in $all_spaces; do
-    if [ "$s" -ne "$space" ]; then
+  # Dim all other spaces
+  for s in {1..9}; do
+    if [ "$s" -ne "$current_space" ]; then
       sketchybar --set space.$s background.color=0xFF333333  
     fi
   done
