@@ -27,8 +27,20 @@
       exec-on-workspace-change = ["/bin/bash" "-c" "~/.config/sketchybar/plugins/aerospace_refresh.sh"];
       on-window-detected = ["/bin/bash" "-c" "~/.config/sketchybar/plugins/aerospace_refresh.sh"];
 
-      # Keybindings: move focused window to workspace with Shift-alt-ctrl-cmd-num
+      # Keybindings
       mode.main.binding = {
+        # Switch to workspace with Shift+Option+Control+num
+        "shift-alt-ctrl-1" = "workspace 1";
+        "shift-alt-ctrl-2" = "workspace 2";
+        "shift-alt-ctrl-3" = "workspace 3";
+        "shift-alt-ctrl-4" = "workspace 4";
+        "shift-alt-ctrl-5" = "workspace 5";
+        "shift-alt-ctrl-6" = "workspace 6";
+        "shift-alt-ctrl-7" = "workspace 7";
+        "shift-alt-ctrl-8" = "workspace 8";
+        "shift-alt-ctrl-9" = "workspace 9";
+        
+        # Move focused window to workspace with Shift+Option+Control+Command+num
         "shift-alt-ctrl-cmd-1" = "move-node-to-workspace 1";
         "shift-alt-ctrl-cmd-2" = "move-node-to-workspace 2";
         "shift-alt-ctrl-cmd-3" = "move-node-to-workspace 3";
@@ -38,6 +50,8 @@
         "shift-alt-ctrl-cmd-7" = "move-node-to-workspace 7";
         "shift-alt-ctrl-cmd-8" = "move-node-to-workspace 8";
         "shift-alt-ctrl-cmd-9" = "move-node-to-workspace 9";
+        
+        # Focus windows
         "shift-alt-ctrl-h" = "focus left";
         "shift-alt-ctrl-l" = "focus right";
         "shift-alt-ctrl-j" = "focus down";
