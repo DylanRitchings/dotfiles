@@ -11,7 +11,7 @@
         inner.vertical = 10;
         outer.left = 10;
         outer.bottom = 10;
-        outer.top = 28;  # Top padding for sketchybar
+        outer.top = 70;  # Top padding for sketchybar
         outer.right = 10;
       };
 
