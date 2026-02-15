@@ -23,6 +23,10 @@
         "9" = 1;
       };
 
+      # Callbacks to notify sketchybar
+      exec-on-workspace-change = ["/bin/bash" "-c" "~/.config/sketchybar/plugins/aerospace_refresh.sh"];
+      on-window-detected = ["/bin/bash" "-c" "~/.config/sketchybar/plugins/aerospace_refresh.sh"];
+
       # Keybindings: move focused window to workspace with Shift-alt-ctrl-cmd-num
       mode.main.binding = {
         "shift-alt-ctrl-cmd-1" = "move-node-to-workspace 1";
@@ -39,8 +43,6 @@
         "shift-alt-ctrl-j" = "focus down";
         "shift-alt-ctrl-k" = "focus up";
       };
-
-      # Hooks removed - configure sketchybar triggers manually if needed
     };
   };
 }
