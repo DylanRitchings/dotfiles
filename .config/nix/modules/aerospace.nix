@@ -1,13 +1,20 @@
 { pkgs, ... }: {
   services.aerospace = {
     enable = true;
+
     settings = {
+      # Config version for compatibility
+      config-version = 2;
+      
       # start-at-login managed by nix-darwin/launchd, not aerospace itself
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
       
       # Automatically switch between macOS Spaces when switching workspaces
       automatically-unhide-macos-hidden-apps = false;
+      
+      # Keep workspaces 1-9 persistent
+      persistent-workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9"];
       
       # Use macOS native spaces instead of creating virtual workspaces
       # Map aerospace workspaces to macOS Mission Control spaces
