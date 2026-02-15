@@ -44,7 +44,9 @@ do
                               associated_space=$sid \
                               associated_display=1 \
                               label.font="sketchybar-app-font:Regular:${FONT_SIZE}" \
+                              label.color=0xFFECEFF4 \
                               icon.highlight_color=0xFFA3BE8C \
+                              label.highlight_color=0xFF888888 \
                               script="~/.config/sketchybar/plugins/space_windows.sh"  \
                               background.color=0xFF000000 \
                               background.height=$((HEIGHT - 10)) \

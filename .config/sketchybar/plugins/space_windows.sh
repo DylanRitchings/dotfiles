@@ -1,6 +1,9 @@
 #!/bin/bash
 # Update icons for the space where a window change occurred
-if [ "$SENDER" = "space_windows_change" ]; then
+if [ "$SENDER" = "space_windows_change" ] || [ "$SENDER" = "front_app_switched" ]; then
+  # Get the currently focused app
+  focused_app=$(aerospace list-windows --focused --format "%{app-name}" 2>/dev/null | head -1)
+  
   # Update all spaces to refresh their window icons
   for space_num in {1..9}; do
     # Get all windows in this workspace
@@ -10,7 +13,13 @@ if [ "$SENDER" = "space_windows_change" ]; then
     if [ -n "$apps" ]; then
       while IFS= read -r app; do
         if [ -n "$app" ]; then
-          icon_strip+=" $(~/.config/sketchybar/plugins/icon_map.sh "$app")"
+          icon=$(~/.config/sketchybar/plugins/icon_map.sh "$app")
+          # If this is the focused app, make it grey; otherwise white
+          if [ "$app" = "$focused_app" ]; then
+            icon_strip+=" :--:${icon}:--:"
+          else
+            icon_strip+=" ${icon}"
+          fi
         fi
       done <<< "$apps"
     fi
