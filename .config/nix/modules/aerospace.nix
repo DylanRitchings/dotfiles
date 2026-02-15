@@ -34,6 +34,9 @@
         "shift-alt-ctrl-cmd-8" = "move-node-to-workspace 8";
         "shift-alt-ctrl-cmd-9" = "move-node-to-workspace 9";
         
+        # Move window to next/prev monitor
+        "shift-alt-ctrl-cmd-m" = "move-node-to-monitor --wrap-around next";
+        
         # Focus windows
         "shift-alt-ctrl-h" = "focus left";
         "shift-alt-ctrl-l" = "focus right";
