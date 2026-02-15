@@ -21,7 +21,7 @@
       plugins = [
         # "ohmyzsh/ohmyzsh path:plugins/git"
         "ohmyzsh/ohmyzsh path:plugins/colorize"
-        "ohmyzsh/ohmyzsh path:plugins/history"
+        # "ohmyzsh/ohmyzsh path:plugins/history"
         "ohmyzsh/ohmyzsh path:plugins/aws"
         "ohmyzsh/ohmyzsh path:plugins/web-search"
         "zsh-users/zsh-history-substring-search"
@@ -56,7 +56,6 @@
       typeset -U path cdpath fpath manpath
 
       # Completion setup
-      autoload -U compinit && compinit
       autoload -Uz history-substring-search
       zle -N history-substring-search-up
       zle -N history-substring-search-down
@@ -69,7 +68,6 @@
       HISTFILE="$HOME/.config/.zsh_history"
       mkdir -p "$(dirname "$HISTFILE")"
       setopt HIST_FCNTL_LOCK
-      unsetopt APPEND_HISTORY
       setopt HIST_IGNORE_DUPS
       unsetopt HIST_IGNORE_ALL_DUPS
       setopt HIST_IGNORE_SPACE
@@ -84,6 +82,9 @@
       export PATH="$PATH:$HOME/Library/Python/3.9/bin"
 
       export EDITOR=nvim
+
+       # Initialize opam environment
+      [[ -r "$HOME/.opam/opam-init/init.zsh" ]] && source "$HOME/.opam/opam-init/init.zsh"
     '';
   };
 

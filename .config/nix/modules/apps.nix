@@ -17,9 +17,8 @@
     syncthing
     sketchybar
     # sketchybar-app-font # TODO currently installed manually 
-    skhd 
-    yabai
-    # raycast
+    # skhd 
+    # yabai
     # karabiner-elements
  
     #languages
@@ -68,7 +67,12 @@
     openocd
     dfu-util
     gnumake
-
+    gh
+    aerospace
+    ocaml
+    opam
+    dune_3
+    wget
   ];
 
   services = {
@@ -79,11 +83,12 @@
     # tailscale = {
     #   enable = true;
     # };
-    yabai = {
-      enable = true;
-      enableScriptingAddition = true; 
-    };
-    skhd.enable = true;
+    # aerospace.enable = true; # Now configured in aerospace.nix
+    # yabai = {
+    #   enable = true;
+    #   enableScriptingAddition = true; 
+    # };
+    # skhd.enable = true;
   };
   # services.raycast.enable = true;
   # services.sketchybar-app-font.enable = true;
@@ -178,6 +183,8 @@
       "ableton-live-suite@11"
       "vlc"
       "transmission"
+      "copilot-cli"
+      # "amethyst"
     ];
   };
 }
