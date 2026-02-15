@@ -32,9 +32,9 @@
       ];
 
       # Notify sketchybar on window/workspace changes
-      on-window-detected.run = ["sketchybar" "--trigger" "space_windows_change"];
-      on-focused-monitor-changed.run = ["sketchybar" "--trigger" "space_changed"];
-      on-workspace-changed.run = ["sketchybar" "--trigger" "space_changed"];
+      on-window-detected = ["sketchybar" "--trigger" "space_windows_change"];
+      on-focused-monitor-changed = ["sketchybar" "--trigger" "space_changed"];
+      on-workspace-changed = ["sketchybar" "--trigger" "space_changed"];
     };
   };
 }
