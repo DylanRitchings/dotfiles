@@ -61,6 +61,7 @@
         ./modules/host-users.nix
         ./modules/launchd.nix
         ./modules/aerospace.nix
+        ./modules/aerospace-install.nix
 
         # home manager
         home-manager.darwinModules.home-manager
