@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   services.aerospace = {
-    enable = true;
+    enable = false;
 
     settings = {
       # start-at-login managed by nix-darwin/launchd, not aerospace itself

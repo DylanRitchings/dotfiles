@@ -68,7 +68,7 @@
     dfu-util
     gnumake
     gh
-    aerospace
+    # aerospace
     ocaml
     opam
     dune_3
