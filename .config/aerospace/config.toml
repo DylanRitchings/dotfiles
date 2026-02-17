@@ -1,0 +1,68 @@
+# AeroSpace user config (managed from dotfiles)
+# Place a symlink to this file at ~/.config/aerospace/config.toml
+
+# Config version enabling newer keys
+config-version = 2
+
+# Behaviour
+start-at-login = false
+auto-reload-config = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+default-root-container-layout = "tiles"
+default-root-container-orientation = "auto"
+
+# Gaps between windows and screen edges
+[gaps]
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 0
+outer.bottom = 0
+outer.top = 0
+outer.right = 0
+
+# Keep workspaces 1..9 persistent
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+# Callbacks to integrate with sketchybar
+exec-on-workspace-change = ["${HOME}/.config/sketchybar/plugins/aerospace_refresh.sh"]
+on-window-detected = ["${HOME}/.config/sketchybar/plugins/aerospace_refresh.sh"]
+on-focused-monitor-changed = ["${HOME}/.config/sketchybar/plugins/aerospace_refresh.sh"]
+
+# Keyboard mappings
+[key-mapping]
+preset = "qwerty"
+
+[mode.main.binding]
+# Switch to workspace
+shift-alt-ctrl-1 = "workspace 1"
+shift-alt-ctrl-2 = "workspace 2"
+shift-alt-ctrl-3 = "workspace 3"
+shift-alt-ctrl-4 = "workspace 4"
+shift-alt-ctrl-5 = "workspace 5"
+shift-alt-ctrl-6 = "workspace 6"
+shift-alt-ctrl-7 = "workspace 7"
+shift-alt-ctrl-8 = "workspace 8"
+shift-alt-ctrl-9 = "workspace 9"
+
+# Move focused window to workspace
+shift-alt-ctrl-cmd-1 = "move-node-to-workspace 1"
+shift-alt-ctrl-cmd-2 = "move-node-to-workspace 2"
+shift-alt-ctrl-cmd-3 = "move-node-to-workspace 3"
+shift-alt-ctrl-cmd-4 = "move-node-to-workspace 4"
+shift-alt-ctrl-cmd-5 = "move-node-to-workspace 5"
+shift-alt-ctrl-cmd-6 = "move-node-to-workspace 6"
+shift-alt-ctrl-cmd-7 = "move-node-to-workspace 7"
+shift-alt-ctrl-cmd-8 = "move-node-to-workspace 8"
+shift-alt-ctrl-cmd-9 = "move-node-to-workspace 9"
+
+# Move focused window to next monitor
+shift-alt-ctrl-cmd-m = "move-node-to-monitor --wrap-around next"
+
+# Focus navigation
+shift-alt-ctrl-h = "focus left"
+shift-alt-ctrl-l = "focus right"
+shift-alt-ctrl-j = "focus down"
+shift-alt-ctrl-k = "focus up"
