@@ -1,5 +1,5 @@
-export ZSH="$HOME/.config/oh-my-zsh"
-export PATH=/Users/dylan/Library/Python/3.12/bin:$PATH
+export ZSH="$HOME/.oh-my-zsh"
+# export PATH=/Users/dylan/Library/Python/3.12/bin:$PATH
 
 zstyle ':completion:*' audit 'no'
 
