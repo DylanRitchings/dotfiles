@@ -24,7 +24,7 @@
         "ohmyzsh/ohmyzsh path:plugins/history"
         "ohmyzsh/ohmyzsh path:plugins/aws"
         "ohmyzsh/ohmyzsh path:plugins/web-search"
-
+        "zsh-users/zsh-history-substring-search"
         "zsh-users/zsh-autosuggestions"
         "zsh-users/zsh-syntax-highlighting"
         "Aloxaf/fzf-tab"
@@ -57,7 +57,12 @@
 
       # Completion setup
       autoload -U compinit && compinit
+      autoload -Uz history-substring-search
+      zle -N history-substring-search-up
+      zle -N history-substring-search-down
 
+      bindkey '^[[A' history-substring-search-up     # Up arrow
+      bindkey '^[[B' history-substring-search-down   # Down arrow
       # History settings
       HISTSIZE=10000
       SAVEHIST=10000

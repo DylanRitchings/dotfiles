@@ -27,6 +27,7 @@
     pyenv
     ansible
     terraform
+    terraform-ls
     sourcekit-lsp
     glib
 
@@ -53,10 +54,31 @@
     typescript
     typescript-language-server
     imagemagick
+    exiftool
+
+    #email
+    isync
+    msmtp
+    neomutt
+    wakeonlan
+    btop
+    presenterm
+    # tailscale
+    gcc-arm-embedded
+    openocd
+    dfu-util
+    gnumake
+
   ];
 
   services = {
     sketchybar.enable = true;
+    # isync.enable = true;
+    # msmtp.enable = true;
+
+    # tailscale = {
+    #   enable = true;
+    # };
     yabai = {
       enable = true;
       enableScriptingAddition = true; 
@@ -89,13 +111,14 @@
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas 
     masApps = {
-      Xcode = 497799835;
+      # Xcode = 497799835;
 
     };
 
     taps = [
       "homebrew/services"
       "localstack/tap"
+      "krishkrosh/apps"
     ];
 
 
@@ -104,6 +127,8 @@
       "gtk+3"
       "cairo" 
       "pkg-config"
+      "yt-dlp"
+      "ffmpeg"
     ];
 
 
@@ -114,7 +139,7 @@
       "brave-browser"
       "obsidian"
       "shottr" #TODO move to top?
-      "syncthing"
+      "syncthing-app"
       "spotify"
 
       "discord"
@@ -131,13 +156,33 @@
       "raycast"
       "stats"
       "balenaetcher"
-      "bambu-studio"
       "autodesk-fusion"
       "netdownloadhelpercoapp"
       "affinity-photo"
-      #creation
-      
+      "fx-cast-bridge"
+      "orcaslicer"
+      "electrum"
+      "trackweight"
+      "telegram"
+      "tailscale-app"
+      "openscad"
+      "digiKam"
+      "firefox"
+      "proton-mail-bridge"
+      "coconutbattery"
+      "calibre"
+      "scroll-reverser"
 
+      "cardinal" # music rack
+      "epic-games"
+      "ableton-live-suite@11"
+      "vlc"
+      "transmission"
     ];
   };
 }
+
+
+
+
+

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HEIGHT=38
+HEIGHT=32
 FONT_SIZE=12
 ############## BAR ##############
 sketchybar -m --bar height=$HEIGHT \
@@ -19,6 +19,7 @@ sketchybar -m --default updates=when_shown \
                         icon.highlight_color=0xFFA3BE8C \
                         label.font="FiraCode Nerd Font:Regular:${FONT_SIZE}" \
                         label.color=0xFFECEFF4 \
+                        window.level=normal
 
 ############## SPACE DEFAULTS ##############
 # sketchybar -m --default \
@@ -46,8 +47,8 @@ do
                               icon.highlight_color=0xFFA3BE8C \
                               script="~/.config/sketchybar/plugins/space_windows.sh"  \
                               background.color=0xFF000000 \
-                              background.height=$((HEIGHT - 12)) \
-                              background.corner_radius=8 \
+                              background.height=$((HEIGHT - 10)) \
+                              background.corner_radius=4 \
                               padding_left=4 \
                               padding_right=4 \
                               icon.padding_right=5 \

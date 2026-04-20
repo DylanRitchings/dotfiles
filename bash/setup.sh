@@ -1,5 +1,5 @@
-export ZSH="$HOME/.oh-my-zsh"
-# export PATH=/Users/dylan/Library/Python/3.12/bin:$PATH
+export ZSH="$HOME/.config/oh-my-zsh"
+export PATH=/Users/dylan/Library/Python/3.12/bin:$PATH
 
 zstyle ':completion:*' audit 'no'
 
@@ -39,3 +39,4 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
 export DISPLAY=:0
+export MSMTP_CONFIG=~/.config/msmtp/config
