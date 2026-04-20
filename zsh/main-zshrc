@@ -1,0 +1,281 @@
+#!/usr/bin/env bash
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+export PATH=/Users/dylan/Library/Python/3.12/bin:$PATH
+
+ZSH_THEME="eastwood"
+# ZSH_THEME="robbyrussell"
+
+plugins=(
+    fzf
+    fzf-tab
+    zsh-autosuggestions
+    git
+    colorize
+    history
+    aws
+    web-search
+    zsh-syntax-highlighting
+    F-Sy-H
+    #emacs
+)
+
+export TERM=tmux-256color
+
+source $ZSH/oh-my-zsh.sh
+export EDITOR=emacs
+# ------------ZSH fzf-tab ------------
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# It specifies the key to trigger a continuous completion (accept the result and start another completion immediately). It's useful when completing a long path.
+zstyle ':fzf-tab:*' continuous-trigger '/'
+enable-fzf-tab
+
+ENABLE_CORRECTION="false"
+COMPLETION_WAITING_DOTS="true"
+
+
+if ["$OSTYPE" == "darwin*" ]]; then
+  if [ -z "$TMUX" ]; then
+    tmux
+  fi
+fi
+
+# if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" || "$OSTYPE" == "win32" ]]; then
+#    tmux -f "/c/Users/dylan.ritchings/dev/personal_repos/dotfiles/config/tmux/tmux.conf"
+# else
+# export AWS_VAULT_BACKEND="pass"
+# export GPG_TTY="$( tty )"
+
+workFolder="~/Work"
+
+alias dev='cd ~/Dev/'
+alias cdd='cd ~/Dev/'
+alias work="cd $workFolder"
+alias cdw="cd $workFolder"
+
+
+alias roles='cat ~/.aws/config'
+
+alias src="source"
+
+
+alias gcane="git commit --amend --no-edit"
+
+
+alias vim='emacsclient -t'
+alias vi='emacsclient -t'
+
+alias py="python3"
+alias python="python3"
+alias pip="pip3"
+
+alias doom='~/.emacs.d/bin/doom'
+
+alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+function idea {
+    intellij-idea-community $1 &
+    }
+
+function tfplansave {
+    tfbuild $1 $2 plan -no-color | sed 's,\x1B\[[0-9;]*[a-zA-Z],,g' | tee -a $3"$(basename `git rev-parse --show-toplevel`)_Plan-$2.txt"
+    }
+
+function 'sudoe' {
+  sudo screen -dm emacs $1
+}
+
+function e {
+  emacs $1
+    }
+function ec {
+  emacsclient -n $1
+}
+
+function cpr {
+  blue=`tput setaf 6`
+
+  repoName=$(basename `git rev-parse --show-toplevel`)
+  currentBranch=$(git branch --show-current)
+  prTitle="$1"
+
+  output=$(aws-vault exec "TLG" -- \
+    aws codecommit create-pull-request \
+    --title $prTitle \
+    --targets repositoryName=$repoName,sourceReference=$currentBranch)
+  srcCommId=$(echo $output | jq -r '.pullRequest.pullRequestTargets[0].sourceCommit')
+  destCommId=$(echo $output | jq -r '.pullRequest.pullRequestTargets[0].destinationCommit')
+
+  git diff "$destCommId" "$srcCommId"
+  prId=$(echo $output | jq -r '.pullRequest.pullRequestId')
+  prUrl="https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/"$repoName"/pull-requests/"$prId"/changes?region=eu-west-2"
+
+  echo ${blue}$prUrl${reset}
+
+}
+
+function cclone {
+  cd ~/Documents/Work/Repos
+  repo="$1"
+  if [ -d "$repo" ];
+  then
+    cd $repo
+    git pull
+  else
+    git clone "https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/${repo}"
+    cd $repo
+    pre-commit install
+  fi
+  cd terraform_src
+
+}
+
+# Emacs cd tracker
+if [ -n "$INSIDE_EMACS" ]; then
+  chpwd() { print -P "\033AnSiTc %d" }
+  print -P "\033AnSiTu %n"
+  print -P "\033AnSiTc %d"
+fi
+
+if [ -e /home/dylan/.nix-profile/etc/profile.d/nix.sh ]; then . /home/dylan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+
+if [ -d "$HOME/bin" ] ; then
+  PATH="/home/dylan/terraform-lsp:$HOME/bin"
+fi
+
+export PATH="/home/dylan/.emacs.d/bin:$PATH"
+
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+
+# Fuzzy matching
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
+
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+DISABLE_MAGIC_FUNCTIONS=true
+
+# neofetch
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# Work config
+[ -f $HOME/.workrc ] && source $HOME/.workrc
+
+
+
+# tmux has-session -t "notes" 2>/dev/null || (tmux new-session -d -s "notes" -c "$HOME" && tmux send-keys -t "notes" "cd ~/notes && nvim ." C-m)
+#
+# tmux new -A -s "terminal"
+#
+PATH="$PATH":"$HOME/dev/personal_repos/dotfiles/scripts/"
+bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^s "window-split\n"
+
+cdf() {
+  $(dirpath=$(find . | fzf) && {
+    [[ -f "$dirpath" ]] && dirpath=$(dirname "$dirpath")
+    echo $dirpath
+    cd "$dirpath"
+  })
+}
+
+
+pdenv() {
+  source $(pdm venv activate | tr -d "'\r" | sed 's/\\/\\\\/g')
+}
+
+
+function sso {
+  usage="
+   Usage:
+     If fzf is installed:
+       sso
+       (This will present an interactive list of profiles to choose from)
+  
+     If fzf is not installed:
+       sso <PROFILE>
+       (Replace <PROFILE> with the name of the AWS profile you want to use)
+  
+   Example:
+     With fzf:    'sso'
+     Without fzf: 'sso my-aws-profile'
+  "
+
+  if [[ -n "$1" ]]; then
+    (aws configure list-profiles | grep -qw "$1") && profile="$1" || {echo "\"$1\" profile doesn't exist"; echo $usage; return 1}
+  elif command -v fzf &> /dev/null; then 
+    profile="$(aws configure list-profiles | fzf --height 40% --layout=reverse)"
+  else
+    echo "Install fzf or run command like: 'sso <PROFILE>'"
+    echo $usage
+    return 1
+  fi
+
+  if [[ -n "$profile" ]]; then
+    aws sts get-caller-identity > /dev/null 2>&1 || aws sso login --profile "$profile"
+    export AWS_DEFAULT_REGION=eu-west-2 && \
+    export AWS_PROFILE="$profile" && \
+    export CDK_DEFAULT_PROFILE="$profile"
+  else
+    echo "No profile selected"
+  fi
+}
+
+# TODO move this into dotfiles repo
+[ -f "$HOME/dev/personal_repos/bash_scripts/aliases.sh" ] && source "$HOME/dev/personal_repos/bash_scripts/aliases.sh"
+[ -f "$HOME/dev/personal_repos/private-bash/private_aliases.sh" ] && source "$HOME/dev/personal_repos/private-bash/private_aliases.sh"
+
+unsetopt correct_all
+unsetopt correct
+source $ZSH/oh-my-zsh.sh
+export EDITOR=nvim
+
+
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+
+if [[ -n "$WT_SESSION" ]]; then
+  PROMPT_COMMAND=${PROMPT_COMMAND:+"$PROMPT_COMMAND; "}'printf "\e]9;9;%s\e\\" "$(cygpath -w "$PWD" -C ANSI)"'
+fi
+
+__conda_setup="$('/Users/dylan/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/dylan/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/dylan/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/dylan/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
