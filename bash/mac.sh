@@ -1,4 +1,4 @@
-if [ -z "$TMUX" ]; then
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
     tmux
 fi
 

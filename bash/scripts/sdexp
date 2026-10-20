@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+YEAR=$(date +%Y)
+ALBUM="camera-$YEAR"
+DEST="$HOME/Pictures/imgpick"
+
+usage() {
+    cat <<EOF
+Usage: $(basename "$0") [-A <album>]
+
+  Copies images from an SD card DCIM folder to ~/Pictures/imgpick,
+  opens imgpick to select images, then uploads the selection to Immich.
+
+Options:
+  -A, --album <name>   Immich album name (default: camera-$YEAR)
+  -h, --help           Show this help
+EOF
+    exit 0
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -A|--album) ALBUM="$2"; shift 2 ;;
+        -h|--help)  usage ;;
+        *) echo "Unknown option: $1" >&2; usage ;;
+    esac
+done
+
+# --- Find SD card ---
+SDCARD=""
+for vol in /Volumes/*/; do
+    if [[ -d "${vol}DCIM" ]]; then
+        SDCARD="${vol}DCIM"
+        break
+    fi
+done
+
+if [[ -z "$SDCARD" ]]; then
+    echo "Error: No SD card with a DCIM folder found in /Volumes/" >&2
+    exit 1
+fi
+echo "SD card: $SDCARD"
+
+# --- Copy images ---
+mkdir -p "$DEST"
+echo "Copying images to $DEST ..."
+
+rsync -av --progress --recursive "$SDCARD/" "$DEST/"
+
+IMAGE_COUNT=$(find "$DEST" -type f | wc -l | tr -d ' ')
+echo "$IMAGE_COUNT image(s) available — launching imgpick ..."
+
+# --- Pick images ---
+SELECTED=$(find "$DEST" -type f | sort | imgpick)
+
+if [[ -z "$SELECTED" ]]; then
+    echo "No images selected. Exiting."
+    exit 0
+fi
+
+SELECTED_COUNT=$(echo "$SELECTED" | grep -c .)
+echo "Uploading $SELECTED_COUNT image(s) to Immich album: $ALBUM"
+
+# --- Upload to Immich (null-delimited for filenames with spaces) ---
+echo "$SELECTED" | tr '\n' '\0' | xargs -0 immich upload --album-name "$ALBUM"
+
+echo "Done!"

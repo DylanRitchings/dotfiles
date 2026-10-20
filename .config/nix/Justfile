@@ -1,5 +1,0 @@
-# justfile
-
-rebuild_system:
-  nix build .#darwinConfigurations.Dylans-MacBook-Pro.system --extra-experimental-features 'nix-command flakes' && sudo ./result/sw/bin/darwin-rebuild switch --flake .#Dylans-MacBook-Pro
-

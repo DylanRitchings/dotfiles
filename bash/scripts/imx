@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+IMP_DIR=~/Pictures/import
+SD=/Volumes/Camera/DCIM
+
+last_dir=$( basename $( ls -d $IMP_DIR/*/ | tail -n1 ) )
+new_dir=$IMP_DIR/$((last_dir + 1))
+mkdir $new_dir
+
+rsync -av --remove-source-files $SD/*/* $new_dir
+
+nsxiv $new_dir/*.JPG
+

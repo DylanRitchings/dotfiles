@@ -1,12 +1,12 @@
 #!/bin/bash
 
-HEIGHT=32
+HEIGHT=33
 FONT_SIZE=12
 ############## BAR ##############
 sketchybar -m --bar height=$HEIGHT \
                     position=top \
                     padding_right=5 \
-                    color=0xE0000000 
+                    color=0xFF000000 
                     # border_color=0xff2E3440 \
                     # color=0xff2E3440 \
 
@@ -56,7 +56,7 @@ do
                               icon.padding_right=5 \
                               icon.padding_left=5 \
                               click_script="~/.config/sketchybar/plugins/change_space.sh ${sid}"  \
-                              --subscribe space.$sid space_windows_change front_app_switched space_change
+                              --subscribe space.$sid space_windows_change space_change
                               # --subscribe space.$sid mouse.entered mouse.exited space_windows_change
 done
 
@@ -73,30 +73,40 @@ sketchybar -m --add item clock right \
                           label.padding_right=10 \
                           script="~/.config/sketchybar/plugins/clock.sh" \
                           padding_left=4 \
-                          padding_right=4 \
+                          padding_right=10 \
                           icon.padding_right=5 \
                           icon.font="FiraCode Nerd Font:Bold:$((FONT_SIZE + 3))" \
                           background.corner_radius=8 \
                           background.height=$((HEIGHT - 12)) 
                           # background.color=0xFF333333 
 
-sketchybar -m --add alias "Control Center,BentoBox" right \
-              --set "Control Center,BentoBox" padding_left=0 \
-              padding_right=-10 \
-              alias.color=0xFFFFFFFF \
-              click_script="osascript -e 'tell application \"System Events\" to tell process \"Control Center\" to perform action \"AXPress\" of menu bar item 2 of menu bar 1'"
-
 sketchybar -m --add alias "Control Center,Battery" right \
               --set "Control Center,Battery" \
-              padding_right=-12 \
+              padding_right=-7 \
               alias.color=0xFFFFFFFF \
-              click_script="osascript -e 'tell application \"System Events\" to keystroke \"b\" using {option down, shift down, control down, command down}'" 
+              click_script="open -a 'coconutBattery'"
+
+sketchybar -m --add item control_center right \
+              --set control_center icon="●" \
+                          icon.color=0xFFFFFFFF \
+                          label.drawing=off \
+                          padding_left=4 \
+                          padding_right=4 \
+                          click_script="osascript -e 'tell application \"System Events\" to tell process \"Control Center\" to perform action \"AXPress\" of menu bar item 5 of menu bar 1'"
 
 
 sketchybar -m --add alias "Stats,Battery" right \
               --set "Stats,Battery" \
-              alias.color=0xFFFFFFFF \
-              # click_script="osascript -e 'tell application \"System Events\" to keystroke \"b\" using {option down, shift down, control down, command down}'" 
+              alias.color=0xFFFFFFFF
+
+sketchybar -m --add item ice_toggle right \
+              --set ice_toggle icon="<" \
+                          icon.color=0xFFFFFFFF \
+                          icon.font="FiraCode Nerd Font:Regular:$((FONT_SIZE - 2))" \
+                          label.drawing=off \
+                          padding_left=6 \
+                          padding_right=6 \
+                          click_script="osascript -e 'tell application \"System Events\" to tell process \"Ice\" to click menu bar item 2 of menu bar 2'"
 #
 # sketchybar -m --add item battery right \
 #               --set battery update_freq=3 \
@@ -318,5 +328,9 @@ sketchybar -m --add alias "Stats,Battery" right \
 ############## FINALIZING THE SETUP ##############
 sketchybar --bar topmost=on
 sketchybar -m --update
+
+# Initialise workspace highlighting on startup
+AEROSPACE_FOCUSED_WORKSPACE=$(/opt/homebrew/bin/aerospace list-workspaces --focused 2>/dev/null) \
+  ~/.config/sketchybar/plugins/space_windows.sh
 
 echo "sketchybar configuration loaded..."

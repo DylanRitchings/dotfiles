@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+apps=(
+  mutt
+  )
+
+selected=$(printf '%s\n' "${apps[@]}" | fzf)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+# Check if session exists, create if not
+if ! tmux has-session -t=$selected 2> /dev/null; then
+    tmux new-session -ds $selected -c $selected
+    tmux send-keys -t $selected $selected C-m
+fi
+
+echo "$selected"
